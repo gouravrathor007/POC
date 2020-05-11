@@ -15,13 +15,17 @@ import { RegisterComponent } from './register';
 import { AlertComponent } from './_components';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { MiddleComponent } from './middle/middle.component';
+import { ModalModule } from './_modal/modal/modal.module';
+
 
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        appRoutingModule
+        appRoutingModule,
+        ModalModule
     ],
     declarations: [
         AppComponent,
@@ -30,7 +34,8 @@ import { HeaderComponent } from './header/header.component';
         RegisterComponent,
         AlertComponent,
         FooterComponent,
-        HeaderComponent
+        HeaderComponent,
+        MiddleComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

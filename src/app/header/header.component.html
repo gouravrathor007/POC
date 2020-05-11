@@ -1,6 +1,16 @@
+
+
+
 <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
   <div class="navbar-nav">
-      <a class="nav-item nav-link" routerLink="/">Home</a>
-      <a class="nav-item nav-link" (click)="logout()">Logout</a>
+    <a class="navbar-brand" class="nav-item nav-link" routerLink="/" >
+      <img src="\assets\facebook_logos_PNG19764.png" alt="logo" style="width:90px;">
+    </a>
+      
+        <a class="navbar-brand "  href="#">
+          <img src="\assets\setting1.png" alt="logo" style="width:40px;">
+        </a>
+        <a class="nav-item nav-link"  (click)="logout()">Logout</a>
+        
   </div>
 </nav>
