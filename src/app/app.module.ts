@@ -16,7 +16,9 @@ import { AlertComponent } from './_components';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { MiddleComponent } from './middle/middle.component';
-import { ModalModule } from './_modal/modal/modal.module';
+import { ModalModule } from './_modal';
+import { ModalComponent } from './_modal/modal.component';
+
 
 
 @NgModule({
