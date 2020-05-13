@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { ModalService } from './_modal';
 
 import { AuthenticationService } from './_services';
-import { from } from 'rxjs';
 @Component({ selector: 'app', templateUrl: 'app.component.html' })
 export class AppComponent {
     currentUser: any;
