@@ -5,8 +5,8 @@ import { UserService, AuthenticationService } from '../_services';
 
 @Component({ templateUrl: 'home.component.html' })
 export class HomeComponent implements OnInit {
-    currentUser: any;
-    users = [];
+    public currentUser: any;
+    public users = [];
 
     constructor(
         private authenticationService: AuthenticationService,
@@ -15,16 +15,28 @@ export class HomeComponent implements OnInit {
         this.currentUser = this.authenticationService.currentUserValue;
     }
 
-    ngOnInit() {
+    /**
+     * @description Method called to be load all users 
+     * @returns users
+     */
+    public ngOnInit() {
         this.loadAllUsers();
     }
 
-    deleteUser(id: number) {
+    /**
+     * @description Method called to be delete selected user
+     * @param id 
+     */
+    public deleteUser(id: number) {
         this.userService.delete(id)
             .pipe(first())
             .subscribe(() => this.loadAllUsers());
     }
 
+    /**
+     * @description Method called to be load all users
+     * @returns users
+     */
     private loadAllUsers() {
         this.userService.getAll()
             .pipe(first())

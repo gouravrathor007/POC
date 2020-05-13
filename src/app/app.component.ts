@@ -5,31 +5,47 @@ import { ModalService } from './_modal';
 import { AuthenticationService } from './_services';
 @Component({ selector: 'app', templateUrl: 'app.component.html' })
 export class AppComponent {
-    currentUser: any;
-    bodyText: string;
+    public currentUser: any;
+    public bodyText: string;
 
     constructor(
         private router: Router,
         private authenticationService: AuthenticationService,
         private modalService: ModalService
-    
+
     ) {
         this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     }
 
-    logout() {
+    /**
+     * @description method to be called when user has to logout
+     * @returns void
+     */
+    public logout() {
         this.authenticationService.logout();
         this.router.navigate(['/login']);
     }
-    ngOnInit() {
+
+    /**
+     * @description method to be call when user update the text in popup
+     */
+    public ngOnInit() {
         this.bodyText = 'This text can be updated in modal 1';
     }
 
-    openModal(id: string) {
+    /**
+     * @description method to be called when popup window open
+     * @param id 
+     */
+    public openModal(id: string) {
         this.modalService.open(id);
     }
 
-    closeModal(id: string) {
+    /**
+     * @description Method to be called when user close the popup window close
+     * @param id 
+     */
+    public closeModal(id: string) {
         this.modalService.close(id);
     }
 }
