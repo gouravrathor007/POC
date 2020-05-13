@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService, AuthenticationService } from '../_services';
+import { Component } from '@angular/core';
+import { AuthenticationService } from '../_services';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,23 +7,24 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.less']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
-  currentUser: any;
+  public currentUser: string;
 
   constructor(
-      private router: Router,
-      private authenticationService: AuthenticationService
+    private router: Router,
+    private authenticationService: AuthenticationService
   ) {
-      this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
-
-  logout() {
-      this.authenticationService.logout();
-      this.router.navigate(['/login']);
-  }
-
-  ngOnInit() {
+  
+  /**
+   * @description method to be called when user has to logout
+   * @returns void
+   */
+  public logout(): void {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
   }
 
 }

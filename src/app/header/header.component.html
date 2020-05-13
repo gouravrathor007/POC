@@ -1,9 +1,12 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
-  <div class="navbar-nav">
-    <a class="navbar-brand" class="nav-item nav-link bg-white" routerLink="/">
-      <img src="\assets\employee.png" alt="logo" style="width:40px;">
-    </a>
-    <div class="align-right">
+<nav class="container navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+  <div class="navbar-nav row">
+    <div class="col">
+      <a class="navbar-brand" class="nav-item nav-link bg-white" routerLink="/">
+        <img src="\assets\employee.png" alt="logo" style="width:40px;">
+      </a>
+      <p>Employee Management Portal</p>
+    </div>
+    <div class=" col align-right">
       <a class="navbar-brand ">
         <img src="\assets\setting1.png" alt="logo" style="width:40px;">
       </a>
