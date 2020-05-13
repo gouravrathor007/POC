@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular7tutorial": {
+    "Poc1": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular7tutorial",
+            "outputPath": "dist/Poc1",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular7tutorial:build"
+            "browserTarget": "Poc1:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular7tutorial:build:production"
+              "browserTarget": "Poc1l:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular7tutorial:build"
+            "browserTarget": "Poc1:build"
           }
         },
         "test": {
@@ -108,7 +108,7 @@
         }
       }
     },
-    "angular7tutorial-e2e": {
+    "Poc1-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -117,11 +117,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular7tutorial:serve"
+            "devServerTarget": "Poc1:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular7tutorial:serve:production"
+              "devServerTarget": "Poc1:serve:production"
             }
           }
         },
@@ -137,5 +137,5 @@
       }
     }
   },
-  "defaultProject": "angular7tutorial"
+  "defaultProject": "Poc1"
 }
