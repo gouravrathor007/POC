@@ -7,9 +7,9 @@ import { UserService, AuthenticationService, AlertService } from '../_services';
 
 @Component({ templateUrl: 'register.component.html' })
 export class RegisterComponent implements OnInit {
-    registerForm: FormGroup;
-    loading = false;
-    submitted = false;
+   public registerForm: FormGroup;
+   public loading = false;
+   public submitted = false;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -24,7 +24,11 @@ export class RegisterComponent implements OnInit {
         }
     }
 
-    ngOnInit() {
+    /**
+     * @description Method to be called for user registration validations
+     * 
+     */
+    public ngOnInit() {
         this.registerForm = this.formBuilder.group({
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
@@ -36,7 +40,10 @@ export class RegisterComponent implements OnInit {
     // convenience getter for easy access to form fields
     get f() { return this.registerForm.controls; }
 
-    onSubmit() {
+    /**
+     * @description Method to be called for submit user registration details
+     */
+    public onSubmit() {
         this.submitted = true;
 
         // reset alerts on submit

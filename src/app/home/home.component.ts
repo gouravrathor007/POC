@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
     }
 
     /**
-     * @description Method called to be load all users 
+     * @description Method to be called for load all users 
      * @returns users
      */
     public ngOnInit() {

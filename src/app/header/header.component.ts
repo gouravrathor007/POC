@@ -17,9 +17,9 @@ export class HeaderComponent {
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
-  
+
   /**
-   * @description method to be called when user has to logout
+   * @description Method to be called when user has to logout
    * @returns void
    */
   public logout(): void {

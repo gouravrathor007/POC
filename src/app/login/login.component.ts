@@ -7,10 +7,10 @@ import { AuthenticationService, AlertService } from '../_services'
 
 @Component({templateUrl: 'login.component.html'})
 export class LoginComponent implements OnInit {
-    loginForm: FormGroup;
-    loading = false;
-    submitted = false;
-    returnUrl: string;
+    public loginForm: FormGroup;
+    public loading = false;
+    public submitted = false;
+    public returnUrl: string;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -25,7 +25,10 @@ export class LoginComponent implements OnInit {
         }
     }
 
-    ngOnInit() {
+    /**
+     * @description Method to be called for login username and password
+     */
+    public ngOnInit() {
         this.loginForm = this.formBuilder.group({
             username: ['', Validators.required],
             password: ['', Validators.required]
@@ -38,7 +41,10 @@ export class LoginComponent implements OnInit {
     // convenience getter for easy access to form fields
     get f() { return this.loginForm.controls; }
 
-    onSubmit() {
+    /**
+     * @description Method to called to submit on login page
+     */
+    public onSubmit() {
         this.submitted = true;
 
         // reset alerts on submit
