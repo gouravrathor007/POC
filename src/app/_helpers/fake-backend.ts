@@ -24,6 +24,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return authenticate();
                 case url.endsWith('/users/register') && method === 'POST':
                     return register();
+                case url.endsWith('/users/changePassword') && method === 'POST':
+                    return changePassword();
                 case url.endsWith('/users') && method === 'GET':
                     return getUsers();
                 case url.match(/\/users\/\d+$/) && method === 'DELETE':
@@ -97,6 +99,18 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function idFromUrl() {
             const urlParts = url.split('/');
             return parseInt(urlParts[urlParts.length - 1]);
+        }
+
+        function changePassword() {
+            const { newPassword, id} = body;
+
+            const curUser = users.find(user => user.id === id);
+            curUser.password = newPassword;
+            users = users.filter(x => x.id !== id);
+            users.push(curUser);
+            localStorage.setItem('users', JSON.stringify(users));
+
+            return ok();
         }
     }
 }

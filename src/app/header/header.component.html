@@ -13,40 +13,54 @@
       </div>
       <div class="col-md-2 float-right">
         <div class="row">
-          <a class="col-md-3 mt-3 ">
-            <img src="\assets\profile.png" alt="logo" style="width:50px; height:40px;">
+          <a class="col-md-3 mt-3" (click)="opendModal('custom-modal-2')">
+            <img src="\assets\profile.png" alt="logo" style="width:40px; height:40px;">
           </a>
-          <a class="col-md-3 mt-3" (click)="openModal('custom-modal-1')">
-            <img src="\assets\settings.png" alt="logo" style="width:40px;">
+          <a class="col-md-4 mt-2" (click)="opendModal('custom-modal-1')">
+            <img src="\assets\settings.png" alt="logo" style="width:50px;">
           </a>
           <a class="mt-4 h4" (click)="logout()">Logout</a>
         </div>
       </div>
     </div>
   </div>
-  <!-- Popup modal for change password-->
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+  <!-- Change Password Modal-->
+  <form [formGroup]="changePasswordForm">
     <jw-modal id="custom-modal-1">
+      <h3>Change Password</h3>
       <div class="form-group">
-        <label for="password">Current Password</label>
-        <input type="password" formControlName="password" class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-          <div *ngIf="f.password.errors.required">Password is required</div>
-        </div>
+        <label for="currentPassword">Current Password</label>
+        <input type="password" formControlName="currentPassword" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.currentPassword.errors }" />
+          <div *ngIf="submitted && f.currentPassword.errors" class="invalid-feedback">
+            <div *ngIf="f.currentPassword.errors.required">Password is required</div>
+            <div *ngIf="f.currentPassword.errors.minlength">Password must be at least 6 characters</div>
+          </div>
       </div>
       <div class="form-group">
-        <label for="newpassword"> New Password</label>
-        <input type="newpassword" formControlName="newpassword" class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+        <label for="newPassword"> New Password</label>
+        <input type="password" formControlName="newPassword" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.newPassword.errors }" />
+          <div *ngIf="submitted && f.newPassword.errors" class="invalid-feedback">
+            <div *ngIf="f.newPassword.errors.required">Password is required</div>
+            <div *ngIf="f.newPassword.errors.minlength">Password must be at least 6 characters</div>
+          </div>
       </div>
       <div class="form-group">
-        <label for="confirmpassword">Confirm Password</label>
-        <input type="confirmpassword" formControlName="confirmpassword" class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" formControlName="confirmPassword" class="form-control" 
+          [ngClass]="{ 'is-invalid': submitted && (f.confirmPassword.errors || !arePasswordsMatching()) }" />
+          <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+            <div *ngIf="f.confirmPassword.errors.required">Password is required</div>
+            <div *ngIf="f.confirmPassword.errors.minlength">Password must be at least 6 characters</div>
+          </div>
+          <div class="invalid-feedback">
+            <div *ngIf="!arePasswordsMatching()">Passwords don't match</div>
+          </div>
       </div>
       <div class="form-group">
-        <button class="btn btn-primary">
+        <button [disabled]="loading" class="btn btn-primary" (click)="onSubmit()">
           <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
           Submit
         </button>
@@ -56,4 +70,14 @@
       </div>
     </jw-modal>
   </form>
+
+  <!-- Upload Picture Modal -->
+  <jw-modal id="custom-modal-2">
+    <h3>Upload your picture</h3>
+    
+    <div class="text-right">
+      <button (click)="closeModal('custom-modal-2');" class="btn btn-primary">Close</button>
+    </div>
+  </jw-modal>
+
 </div>

@@ -8,8 +8,8 @@ import { UserService, AuthenticationService, AlertService } from '../_services';
 @Component({ templateUrl: 'register.component.html' })
 export class RegisterComponent implements OnInit {
    public registerForm: FormGroup;
-   public loading = false;
-   public submitted = false;
+   public loading: boolean;
+   public submitted: boolean;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -22,11 +22,12 @@ export class RegisterComponent implements OnInit {
         if (this.authenticationService.currentUserValue) {
             this.router.navigate(['/']);
         }
+        this.loading = false;
+        this.submitted = false;
     }
 
     /**
      * @description Method to be called for user registration validations
-     * 
      */
     public ngOnInit() {
         this.registerForm = this.formBuilder.group({
