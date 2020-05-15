@@ -1,17 +1,24 @@
 <div class="container-fluid">
-    
+
     <app-header></app-header>
     <!-- main content container -->
-    <div class="jumbotron min-vh-100  m-0  d-flex flex-column position:absolute;">
-        <div class="container" >
+    <div class="jumbotron min-vh-100 m-0 d-flex flex-column position:absolute;">
+        <div class="container">
             <div class="row">
-                <div class="col-sm-8 offset-sm-2">
+                <div class="col-md-8">
                     <alert></alert>
                     <router-outlet></router-outlet>
+                </div>
+                <div class="col-md-4 bg-info">
+                    <div>
+                        <a>Important Links</a>
+                    </div>
+                    <div>
+                        <a>Tutorials</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <app-footer></app-footer>
 </div>
-
