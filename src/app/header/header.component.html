@@ -33,31 +33,31 @@
         <label for="currentPassword">Current Password</label>
         <input type="password" formControlName="currentPassword" class="form-control"
           [ngClass]="{ 'is-invalid': submitted && f.currentPassword.errors }" />
-          <div *ngIf="submitted && f.currentPassword.errors" class="invalid-feedback">
-            <div *ngIf="f.currentPassword.errors.required">Password is required</div>
-            <div *ngIf="f.currentPassword.errors.minlength">Password must be at least 6 characters</div>
-          </div>
+        <div *ngIf="submitted && f.currentPassword.errors" class="invalid-feedback">
+          <div *ngIf="f.currentPassword.errors.required">Password is required</div>
+          <div *ngIf="f.currentPassword.errors.minlength">Password must be at least 6 characters</div>
+        </div>
       </div>
       <div class="form-group">
         <label for="newPassword"> New Password</label>
         <input type="password" formControlName="newPassword" class="form-control"
           [ngClass]="{ 'is-invalid': submitted && f.newPassword.errors }" />
-          <div *ngIf="submitted && f.newPassword.errors" class="invalid-feedback">
-            <div *ngIf="f.newPassword.errors.required">Password is required</div>
-            <div *ngIf="f.newPassword.errors.minlength">Password must be at least 6 characters</div>
-          </div>
+        <div *ngIf="submitted && f.newPassword.errors" class="invalid-feedback">
+          <div *ngIf="f.newPassword.errors.required">Password is required</div>
+          <div *ngIf="f.newPassword.errors.minlength">Password must be at least 6 characters</div>
+        </div>
       </div>
       <div class="form-group">
         <label for="confirmPassword">Confirm Password</label>
-        <input type="password" formControlName="confirmPassword" class="form-control" 
+        <input type="password" formControlName="confirmPassword" class="form-control"
           [ngClass]="{ 'is-invalid': submitted && (f.confirmPassword.errors || !arePasswordsMatching()) }" />
-          <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
-            <div *ngIf="f.confirmPassword.errors.required">Password is required</div>
-            <div *ngIf="f.confirmPassword.errors.minlength">Password must be at least 6 characters</div>
-          </div>
-          <div class="invalid-feedback">
-            <div *ngIf="!arePasswordsMatching()">Passwords don't match</div>
-          </div>
+        <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+          <div *ngIf="f.confirmPassword.errors.required">Password is required</div>
+          <div *ngIf="f.confirmPassword.errors.minlength">Password must be at least 6 characters</div>
+        </div>
+        <div class="invalid-feedback">
+          <div *ngIf="!arePasswordsMatching()">Passwords don't match</div>
+        </div>
       </div>
       <div class="form-group">
         <button [disabled]="loading" class="btn btn-primary" (click)="onSubmit()">
@@ -75,6 +75,9 @@
   <jw-modal id="custom-modal-2">
     <h3>Upload your picture</h3>
     
+    <img [src]="url" height="200"> <br />
+    <input type='file' (change)="onSelectFile($event)">
+
     <div class="text-right">
       <button (click)="closeModal('custom-modal-2');" class="btn btn-primary">Close</button>
     </div>
