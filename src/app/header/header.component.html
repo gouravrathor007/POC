@@ -1,4 +1,4 @@
-<div class="container-fluid rounded py-20 bg-info" *ngIf="currentUser">
+<div class="container-fluid rounded py-20 bg-info">
   <div class="container-xl">
     <div class="row my-2 py-2">
       <div class="col-md-10">
@@ -11,7 +11,7 @@
           <div class="align-left font-weight-bold h2 mt-3">Employee Management Portal</div>
         </div>
       </div>
-      <div class="col-md-2 float-right">
+      <div class="col-md-2 float-right" *ngIf="currentUser">
         <div class="row">
           <a class="col-md-3 mt-3" (click)="opendModal('custom-modal-2')">
             <img src="\assets\profile.png" alt="logo" style="width:40px; height:40px;">

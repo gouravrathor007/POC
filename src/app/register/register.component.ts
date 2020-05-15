@@ -7,9 +7,9 @@ import { UserService, AuthenticationService, AlertService } from '../_services';
 
 @Component({ templateUrl: 'register.component.html' })
 export class RegisterComponent implements OnInit {
-   public registerForm: FormGroup;
-   public loading: boolean;
-   public submitted: boolean;
+    public registerForm: FormGroup;
+    public loading: boolean;
+    public submitted: boolean;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -31,8 +31,12 @@ export class RegisterComponent implements OnInit {
      */
     public ngOnInit() {
         this.registerForm = this.formBuilder.group({
+            userType: ['adminUserType', Validators.required],
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
+            location: ['', Validators.required],
+            grade: ['', Validators.required],
+            skills: ['', Validators.required],
             username: ['', Validators.required],
             password: ['', [Validators.required, Validators.minLength(6)]]
         });
@@ -61,7 +65,7 @@ export class RegisterComponent implements OnInit {
             .subscribe(
                 data => {
                     this.alertService.success('Registration successful', true);
-                    this.router.navigate(['/login'], { queryParams: { registered: true }});
+                    this.router.navigate(['/login'], { queryParams: { registered: true } });
                 },
                 error => {
                     this.alertService.error(error);
