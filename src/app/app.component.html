@@ -1,15 +1,15 @@
-<div class="container-fluid">
+<div class="container-fluid min-vh-100 ">
 
     <app-header></app-header>
     <!-- main content container -->
-    <div class="jumbotron min-vh-100 m-0 d-flex flex-column position:absolute;">
-        <div class="container">
+    <div class="jumbotron">
+        <div class = "container-fluid vh-100  ;">
             <div class="row">
                 <div class="col-md-8">
                     <alert></alert>
                     <router-outlet></router-outlet>
                 </div>
-                <div class="col-md-4 bg-info">
+                <div class="col-md-2 bg-info " *ngIf="currentUser">
                     <div>
                         <a>Important Links</a>
                     </div>

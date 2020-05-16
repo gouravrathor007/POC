@@ -1,9 +1,29 @@
 <h1>Hi {{currentUser.firstName}}!</h1>
-<h3>All registered users:</h3>
-<ul>
-    <li *ngFor="let user of users">
-        {{user.username}} ({{user.firstName}} {{user.lastName}} {{user.location}}  {{user.grade}} {{user.skill}})
-        - <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>
-
-    </li>
-</ul>
+<h3>Employees List:</h3>
+<div class="table-responsive">
+    <table class="table table-hover table-dark">
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Location</th>
+                <th>Grade</th>
+                <th>Skill</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <th>{{user.username}}</th>
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.location}}</td>
+                <td>{{user.grade}}</td>
+                <td>{{user.skills}}</td>
+                <td><a (click)="deleteUser(user.id)" class="text-danger"><strong>Delete</strong></a></td>
+                <td><a (click)="deleteUser(user.id)" class="text-success"><strong>Edit</strong></a></td>
+                <td><a (click)="deleteUser(user.id)"class="text-primary" ><strong>Add Buddy</strong></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
