@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { first } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
+import { ModalService } from '../_modal';
 
 import { UserService, AuthenticationService } from '../_services';
 
@@ -13,7 +14,8 @@ export class HomeComponent implements OnInit {
 
     constructor(
         private authenticationService: AuthenticationService,
-        private userService: UserService
+        private userService: UserService,
+        private modalService: ModalService
     ) {
         this.currentUser = this.authenticationService.currentUserValue;
     }
@@ -28,7 +30,7 @@ export class HomeComponent implements OnInit {
 
     /**
      * @description Method called to be delete selected user
-     * @param id 
+     * @param id
      */
     public deleteUser(id: number) {
         this.userService.delete(id)
@@ -37,12 +39,32 @@ export class HomeComponent implements OnInit {
     }
 
     /**
+     * @description Method to be called when popup window open
+     * @param id 
+     * @returns void
+     */
+    public opendModal(id: string): void {
+        this.modalService.open(id);
+    }
+
+    /**
+     * @description Method to be called when user close the popup window close
+     * @param id 
+     * @return void
+     */
+    public closeModal(id: string): void {
+        this.modalService.close(id);
+    }
+
+    /**
      * @description Method called to be load all users
      * @returns users
      */
     private loadAllUsers() {
         this.userService.getAll()
-            .pipe(first())
+            .pipe(
+                first(),
+                map(users => users.filter(user => user.userType !== 'adminUserType')))
             .subscribe(users => this.users = users);
     }
 }

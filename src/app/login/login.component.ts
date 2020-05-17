@@ -49,7 +49,6 @@ export class LoginComponent implements OnInit {
 
         // reset alerts on submit
         this.alertService.clear();
-        
         // stop here if form is invalid
         if (this.loginForm.invalid) {
             return;
@@ -57,7 +56,7 @@ export class LoginComponent implements OnInit {
 
         this.loading = true;
         this.authenticationService.login(this.f.username.value, this.f.password.value)
-            .pipe(first())
+            .pipe(first(),)
             .subscribe(
                 data => {
                     this.router.navigate([this.returnUrl]);

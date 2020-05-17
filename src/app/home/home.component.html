@@ -20,10 +20,25 @@
                 <td>{{user.location}}</td>
                 <td>{{user.grade}}</td>
                 <td>{{user.skills}}</td>
-                <td><a (click)="deleteUser(user.id)" class="text-danger"><strong>Delete</strong></a></td>
-                <td><a (click)="deleteUser(user.id)" class="text-success"><strong>Edit</strong></a></td>
-                <td><a (click)="deleteUser(user.id)"class="text-primary" ><strong>Add Buddy</strong></a></td>
+                <td><a (click)="opendModal('custom-modal-3')" style="cursor:pointer" class="text-success"><strong>Edit</strong></a></td>
+                <td><a class="text-primary" routerLink="./addbuddy"><strong>Add Buddy</strong></a></td>
+                <td><a (click)="deleteUser(user.id)" style="cursor:pointer" class="text-danger"><strong>Delete</strong></a></td>
             </tr>
         </tbody>
     </table>
+
+    <!-- Upload Picture Modal -->
+    <jw-modal id="custom-modal-3">
+        <h3>Edit Employee</h3>
+        <app-register [isEditForm]="true"></app-register>
+        <div>
+            <button class="btn btn-primary" (click)="onSubmit()">
+                <span class="spinner-border spinner-border-sm mr-1"></span>
+                Update
+            </button>
+        </div>
+        <div class="text-right">
+            <button (click)="closeModal('custom-modal-3');" class="btn btn-primary">Close</button>
+        </div>
+    </jw-modal>
 </div>

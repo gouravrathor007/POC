@@ -1,12 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { UserService, AuthenticationService, AlertService } from '../_services';
 
-@Component({ templateUrl: 'register.component.html' })
+@Component({ 
+    selector: 'app-register',
+    templateUrl: 'register.component.html' 
+})
 export class RegisterComponent implements OnInit {
+    @Input() isEditForm: boolean;
     public registerForm: FormGroup;
     public loading: boolean;
     public submitted: boolean;
@@ -18,6 +22,7 @@ export class RegisterComponent implements OnInit {
         private userService: UserService,
         private alertService: AlertService
     ) {
+        this.isEditForm = false;
         // redirect to home if already logged in
         if (this.authenticationService.currentUserValue) {
             this.router.navigate(['/']);

@@ -13,13 +13,13 @@
       </div>
       <div class="col-md-2 float-right" *ngIf="currentUser">
         <div class="row">
-          <a class="col-md-3 mt-3" (click)="opendModal('custom-modal-2')">
+          <a class="col-md-3 mt-3" style="cursor:pointer" (click)="opendModal('custom-modal-2')">
             <img src="\assets\profile.png" alt="logo" style="width:40px; height:40px;">
           </a>
-          <a class="col-md-4 mt-2" (click)="opendModal('custom-modal-1')">
+          <a class="col-md-4 mt-2" style="cursor:pointer"(click)="opendModal('custom-modal-1')">
             <img src="\assets\settings.png" alt="logo" style="width:50px;">
           </a>
-          <a class="mt-4 h4" (click)="logout()">Logout</a>
+          <a class="mt-4 h4" style="cursor:pointer" (click)="logout()">Logout</a>
         </div>
       </div>
     </div>

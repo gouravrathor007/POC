@@ -17,7 +17,7 @@ export class HeaderComponent {
   public changePasswordForm: FormGroup;
   public submitted: boolean;
   public loading: boolean;
-  public url = '';
+  public url: string;
 
   constructor(
     private formBuilder: FormBuilder,

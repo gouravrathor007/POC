@@ -2,19 +2,19 @@
 
     <app-header></app-header>
     <!-- main content container -->
-    <div class="jumbotron">
-        <div class = "container-fluid vh-100  ;">
+    <div [ngClass]="{ 'jumbotron': !currentUser }">
+        <div class = "container-fluid vh-100">
             <div class="row">
                 <div class="col-md-8">
                     <alert></alert>
                     <router-outlet></router-outlet>
                 </div>
-                <div class="col-md-2 bg-info " *ngIf="currentUser">
+                <div class="col-md-4 bg-info " *ngIf="currentUser">
                     <div>
-                        <a>Important Links</a>
+                        <p><a routerLink="./important-links"  class="text-dark">Important Links</a></p>
                     </div>
-                    <div>
-                        <a>Tutorials</a>
+                    <div class="text-secondary">
+                        <p><a routerLink="./tutorials" class="text-dark">Tutorials</a></p>
                     </div>
                 </div>
             </div>
