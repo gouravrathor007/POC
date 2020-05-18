@@ -1,16 +1,16 @@
 
-<div class="container-fluid min-vh-100 ">
+<div class="container-fluid ">
 
     <app-header></app-header>
     <!-- main content container -->
-    <div [ngClass]="{ 'jumbotron ': !currentUser }">
-        <div class = "container-fluid" style= height:100vh;>
+    <div [ngClass]="{ 'jumbotron  ': !currentUser }" class="bg-alert" >
+        <div class = "container-fluid"  >
             <div class="row">
                 <div class="col-md-8">
                     <alert></alert>
                     <router-outlet></router-outlet>
                 </div>
-                <div class="col-md-4 bg-info " *ngIf="currentUser">
+                <div class="col-md-4 bg-info " style ="margin-bottom: 15px;"  *ngIf="currentUser">
                     <div>
                         <p><a routerLink="./important-links"  class="text-dark"><strong>Important Links</strong></a></p>
                     </div>
