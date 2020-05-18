@@ -26,6 +26,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return register();
                 case url.endsWith('/users/changePassword') && method === 'POST':
                     return changePassword();
+                case url.endsWith('/users/update') && method === 'POST':
+                    return updateUser();    
                 case url.endsWith('/users') && method === 'GET':
                     return getUsers();
                 case url.match(/\/users\/\d+$/) && method === 'DELETE':
@@ -42,6 +44,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             const { username, password } = body;
             const user = users.find(x => x.username === username && x.password === password);
             if (!user) return error('Username or password is incorrect');
+            if (user.userType !== 'adminUserType') return error('Only admin can login!');
             return ok({
                 id: user.id,
                 username: user.username,
@@ -106,6 +109,23 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
             const curUser = users.find(user => user.id === id);
             curUser.password = newPassword;
+            users = users.filter(x => x.id !== id);
+            users.push(curUser);
+            localStorage.setItem('users', JSON.stringify(users));
+
+            return ok();
+        }
+
+        function updateUser() {
+            const { updatedFields, id} = body;
+
+            const curUser = users.find(user => user.id === id);
+            curUser.firstName = updatedFields.firstName;
+            curUser.lastName = updatedFields.lastName;
+            curUser.location = updatedFields.location;
+            curUser.grade = updatedFields.grade;
+            curUser.skills = updatedFields.skills;
+            
             users = users.filter(x => x.id !== id);
             users.push(curUser);
             localStorage.setItem('users', JSON.stringify(users));

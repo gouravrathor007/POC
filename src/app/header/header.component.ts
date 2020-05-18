@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ModalService } from '../_modal';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import { FileReaderEvent } from './../app.interface';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +18,7 @@ export class HeaderComponent {
   public changePasswordForm: FormGroup;
   public submitted: boolean;
   public loading: boolean;
-  public url: string;
+  public url: string | ArrayBuffer;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -115,14 +116,14 @@ export class HeaderComponent {
    * @description Method called for upload Image
    * @param event 
    */
-  public onSelectFile(event) {
+  public onSelectFile(event: FileReaderEvent) {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
-        this.url = event.target.result;
+        this.url = (event.target as FileReader).result;
       }
     }
   }

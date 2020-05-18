@@ -94,6 +94,13 @@
                 </button>
                 <a routerLink="/login" class="btn btn-link">Cancel</a>
             </div>
+            <div *ngIf="isEditForm">
+                <button [disabled]="loading" class="btn btn-primary" (click)="onUpdate()">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Update
+                </button>
+            </div>
         </form>
     </div>
 </div>
+<br>

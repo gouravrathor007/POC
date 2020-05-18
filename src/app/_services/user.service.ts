@@ -22,4 +22,8 @@ export class UserService {
     changePassword(newPassword, id) {
         return this.http.post(`${environment.apiUrl}/users/changePassword`, {newPassword, id})
     }
+
+    update(updatedFields, id) {
+        return this.http.post(`${environment.apiUrl}/users/update`, {updatedFields, id})
+    }
 }

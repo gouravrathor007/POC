@@ -8,7 +8,7 @@ import { AuthenticationService, AlertService } from '../_services'
 @Component({templateUrl: 'login.component.html'})
 export class LoginComponent implements OnInit {
     public loginForm: FormGroup;
-    public loading = false;
+    public loading: boolean;
     public submitted = false;
     public returnUrl: string;
 
@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
         private authenticationService: AuthenticationService,
         private alertService: AlertService
     ) {
+        this.loading = false;
         // redirect to home if already logged in
         if (this.authenticationService.currentUserValue) { 
             this.router.navigate(['/']);

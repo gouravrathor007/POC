@@ -1,16 +1,19 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-
 import { UserService, AuthenticationService, AlertService } from '../_services';
+import { UserFields } from '../app.interface';
 
 @Component({ 
     selector: 'app-register',
     templateUrl: 'register.component.html' 
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnChanges {
     @Input() isEditForm: boolean;
+    @Input() formFields: UserFields;
+    @Output() updatedFields: EventEmitter<UserFields>;
+
     public registerForm: FormGroup;
     public loading: boolean;
     public submitted: boolean;
@@ -22,6 +25,7 @@ export class RegisterComponent implements OnInit {
         private userService: UserService,
         private alertService: AlertService
     ) {
+        this.updatedFields = new EventEmitter<UserFields>();
         this.isEditForm = false;
         // redirect to home if already logged in
         if (this.authenticationService.currentUserValue) {
@@ -29,12 +33,6 @@ export class RegisterComponent implements OnInit {
         }
         this.loading = false;
         this.submitted = false;
-    }
-
-    /**
-     * @description Method to be called for user registration validations
-     */
-    public ngOnInit() {
         this.registerForm = this.formBuilder.group({
             userType: ['adminUserType', Validators.required],
             firstName: ['', Validators.required],
@@ -45,6 +43,22 @@ export class RegisterComponent implements OnInit {
             username: ['', Validators.required],
             password: ['', [Validators.required, Validators.minLength(6)]]
         });
+    }
+
+    /**
+     * @description Method to be called for user registration validations
+     */
+    public ngOnInit() {
+    }
+
+    public ngOnChanges(Changes: SimpleChanges) {
+        if (this.isEditForm && this.formFields) {
+            this.registerForm.get('firstName').setValue(this.formFields.firstName);
+            this.registerForm.get('lastName').setValue(this.formFields.lastName);
+            this.registerForm.get('location').patchValue(this.formFields.location);
+            this.registerForm.get('grade').setValue(this.formFields.grade);
+            this.registerForm.get('skills').setValue(this.formFields.skills);
+        }
     }
 
     // convenience getter for easy access to form fields
@@ -76,5 +90,21 @@ export class RegisterComponent implements OnInit {
                     this.alertService.error(error);
                     this.loading = false;
                 });
+    }
+
+    /**
+     * @description Method tobe called while updating fields
+     * @returns void
+     */
+    public onUpdate(): void {
+        this.loading = true;
+        const object = {
+            firstName: this.registerForm.get('firstName').value,
+            lastName: this.registerForm.get('lastName').value,
+            location: this.registerForm.get('location').value,
+            grade: this.registerForm.get('grade').value,
+            skills: this.registerForm.get('skills').value,
+        };
+        this.updatedFields.emit(object);
     }
 }
