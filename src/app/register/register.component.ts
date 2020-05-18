@@ -106,5 +106,6 @@ export class RegisterComponent implements OnInit, OnChanges {
             skills: this.registerForm.get('skills').value,
         };
         this.updatedFields.emit(object);
+        this.loading = false;
     }
 }

@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit, OnChanges {
     public currentUser: any;
     public users = [];
     public currentUserFields: UserFields;
+    public editedUserId: string;
 
     constructor(
         private authenticationService: AuthenticationService,
@@ -65,14 +66,15 @@ export class HomeComponent implements OnInit, OnChanges {
     /**
      * @description Method to be called to populate fields of employee in the form
      */
-    public populateFields(): void {
+    public populateFields(user: any): void {
         this.currentUserFields = {
-            firstName: this.currentUser.firstName,
-            lastName: this.currentUser.lastName,
-            location: this.currentUser.location,
-            grade: this.currentUser.grade,
-            skills: this.currentUser.skills
+            firstName: user.firstName,
+            lastName: user.lastName,
+            location: user.location,
+            grade: user.grade,
+            skills: user.skills
         };
+        this.editedUserId = user.id;
         this.opendModal('custom-modal-3');
     }
 
@@ -80,7 +82,7 @@ export class HomeComponent implements OnInit, OnChanges {
      * @description Method to be called to upadte employee data
      */
     public onUpdate(event: any): void {
-        this.userService.update(event, this.currentUser.id)
+        this.userService.update(event, this.editedUserId)
             .pipe(first())
             .subscribe(
             data => {

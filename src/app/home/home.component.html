@@ -1,40 +1,41 @@
-<div style = "padding-bottom:415px">
-<h1>Hi {{currentUser.firstName}}!</h1>
-<h3>Employees List:</h3>
-<div class="table-responsive">
-    <table class="table table-hover table-dark">
-        <thead>
-            <tr>
-                <th>User Name</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Location</th>
-                <th>Grade</th>
-                <th>Skill</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let user of users">
-                <th>{{user.username}}</th>
-                <td>{{user.firstName}}</td>
-                <td>{{user.lastName}}</td>
-                <td>{{user.location}}</td>
-                <td>{{user.grade}}</td>
-                <td>{{user.skills}}</td>
-                <td><a (click)="populateFields()" style="cursor:pointer" class="text-success"><strong>Edit</strong></a></td>
-                <td><a class="text-primary" routerLink="./addbuddy"><strong>Add Buddy</strong></a></td>
-                <td><a (click)="deleteUser(user.id)" style="cursor:pointer" class="text-danger"><strong>Delete</strong></a></td>
-            </tr>
-        </tbody>
-    </table>
-
-    <!-- Upload Picture Modal -->
-    <jw-modal id="custom-modal-3">
-        <h3>Edit Employee</h3>
-        <app-register [isEditForm]="true" [formFields]="currentUserFields" (updatedFields)="onUpdate($event)"></app-register>
-        <div class="text-right">
-            <button (click)="closeModal('custom-modal-3');" class="btn btn-primary">Close</button>
-        </div>
-    </jw-modal>
-</div>
-</div>
+<div class ="home">
+    <h1>Hi {{currentUser.firstName}}!</h1>
+    <h3>Employees List:</h3>
+    <div class="table-responsive">
+        <table class="table table-hover table-dark">
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Location</th>
+                    <th>Grade</th>
+                    <th>Skill</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <th>{{user.username}}</th>
+                    <td>{{user.firstName}}</td>
+                    <td>{{user.lastName}}</td>
+                    <td>{{user.location}}</td>
+                    <td>{{user.grade}}</td>
+                    <td>{{user.skills}}</td>
+                    <td><a (click)="populateFields(user)" style="cursor:pointer" class="text-success"><strong>Edit</strong></a></td>
+                    <td><a class="text-primary" routerLink="./addbuddy"><strong>Add Buddy</strong></a></td>
+                    <td><a (click)="deleteUser(user.id)" style="cursor:pointer" class="text-danger"><strong>Delete</strong></a></td>
+                </tr>
+            </tbody>
+        </table>
+    
+        <!-- Upload Picture Modal -->
+        <jw-modal id="custom-modal-3">
+            <h3>Edit Employee</h3>
+            <app-register [isEditForm]="true" [formFields]="currentUserFields" (updatedFields)="onUpdate($event)"></app-register>
+            <div class="text-right">
+                <button (click)="closeModal('custom-modal-3');" class="btn btn-primary">Close</button>
+            </div>
+        </jw-modal>
+    </div>
+    </div>
+    

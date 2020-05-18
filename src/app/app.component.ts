@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService, AlertService } from './_services';
 
-import { AuthenticationService } from './_services';
-@Component({ selector: 'app', templateUrl: 'app.component.html'})
+@Component({ selector: 'app', templateUrl: 'app.component.html',
+styleUrls:['./app.component.less']})
 export class AppComponent {
     public currentUser: any;
     
@@ -10,8 +11,7 @@ export class AppComponent {
     constructor(
         private router: Router,
         private authenticationService: AuthenticationService,
-        
-
+        private alertService: AlertService
     ) {
         this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     }
@@ -21,6 +21,7 @@ export class AppComponent {
      * @returns void
      */
     public logout() {
+        this.alertService.clear();
         this.authenticationService.logout();
         this.router.navigate(['/login']);
     }

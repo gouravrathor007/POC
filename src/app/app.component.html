@@ -3,24 +3,23 @@
 
     <app-header></app-header>
     <!-- main content container -->
-    <div [ngClass]="{ 'jumbotron  ': !currentUser }" class="bg-alert" >
+    <div [ngClass]="{ 'jumbotron  ': !currentUser }">
         <div class = "container-fluid"  >
             <div class="row">
                 <div class="col-md-8">
                     <alert></alert>
                     <router-outlet></router-outlet>
                 </div>
-                <div class="col-md-4 bg-info " style ="margin-bottom: 15px;"  *ngIf="currentUser">
+                <div class="col-md-4 bg-info link"   *ngIf="currentUser">
                     <div>
-                        <p><a routerLink="./important-links"  class="text-dark"><strong>Important Links</strong></a></p>
+                        <p><a routerLink="./important-links"  class="text-dark"><h4>Important Links</h4></a></p>
                     </div>
                     <div class="text-secondary">
-                        <p><a routerLink="./tutorials" class="text-dark"><strong>Tutorials</strong></a></p>
+                        <p><a routerLink="./tutorials" class="text-dark"><h4>Tutorials</h4></a></p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    
+    </div> 
     <app-footer></app-footer>
 </div>
