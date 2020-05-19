@@ -1,6 +1,6 @@
 # Employee Management Portal
 
-# Features
+## Features
 1. Only admin can able to login.
 2. Update password functionality.
 3. Upload profile image functionality.
