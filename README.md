@@ -1,4 +1,11 @@
-# POC
+# Employee Management Portal
+
+# Features
+1. Only admin can able to login.
+2. Update password functionality.
+3. Upload profile image functionality.
+4. Assign buddy from existing employees.
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
 
