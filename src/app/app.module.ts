@@ -15,7 +15,6 @@ import { RegisterComponent } from './register';
 import { AlertComponent } from './_components';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
-import { MiddleComponent } from './middle/middle.component';
 import { ModalModule } from './_modal';
 import { AddbuddyComponent } from './addbuddy/addbuddy.component';
 import { ImportantLinksComponent } from './important-links/important-links.component';
@@ -39,7 +38,6 @@ import { TutorialsComponent } from './tutorials/tutorials.component';
         AlertComponent,
         FooterComponent,
         HeaderComponent,
-        MiddleComponent,
         AddbuddyComponent,
         ImportantLinksComponent,
         TutorialsComponent
