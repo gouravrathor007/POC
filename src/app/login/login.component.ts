@@ -5,8 +5,10 @@ import { first } from 'rxjs/operators';
 
 import { AuthenticationService, AlertService } from '../_services'
 
-@Component({templateUrl: 'login.component.html',
-styleUrls: ['./login.component.less']})
+@Component({
+    templateUrl: 'login.component.html',
+    styleUrls: ['./login.component.less']
+})
 export class LoginComponent implements OnInit {
     public loginForm: FormGroup;
     public loading: boolean;
@@ -22,7 +24,7 @@ export class LoginComponent implements OnInit {
     ) {
         this.loading = false;
         // redirect to home if already logged in
-        if (this.authenticationService.currentUserValue) { 
+        if (this.authenticationService.currentUserValue) {
             this.router.navigate(['/']);
         }
     }
@@ -58,7 +60,7 @@ export class LoginComponent implements OnInit {
 
         this.loading = true;
         this.authenticationService.login(this.f.username.value, this.f.password.value)
-            .pipe(first(),)
+            .pipe(first())
             .subscribe(
                 data => {
                     this.router.navigate([this.returnUrl]);

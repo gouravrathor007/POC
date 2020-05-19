@@ -85,13 +85,13 @@ export class HomeComponent implements OnInit, OnChanges {
         this.userService.update(event, this.editedUserId)
             .pipe(first())
             .subscribe(
-            data => {
-                this.alertService.success('Update Successful!', true);
-                this.closeModal('custom-modal-3');
-            },
-            error => {
-                this.alertService.error(error);
-            });
+                data => {
+                    this.alertService.success('Update Successful!', true);
+                    this.closeModal('custom-modal-3');
+                },
+                error => {
+                    this.alertService.error(error);
+                });
     }
 
     /**

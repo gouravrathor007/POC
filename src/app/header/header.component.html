@@ -1,4 +1,4 @@
-<div class="container-fluid rounded py-20 bg-info">
+<div class="container-fluid header">
   <div class="container-xl">
     <div class="row my-2 py-2">
       <div class="col-md-10">
@@ -16,7 +16,7 @@
           <a class="col-md-3 mt-3" style="cursor:pointer" (click)="opendModal('custom-modal-2')">
             <img src="\assets\profile.png" alt="logo" style="width:40px; height:40px;">
           </a>
-          <a class="col-md-4 mt-2" style="cursor:pointer"(click)="opendModal('custom-modal-1')">
+          <a class="col-md-4 mt-2" style="cursor:pointer" (click)="opendModal('custom-modal-1')">
             <img src="\assets\settings.png" alt="logo" style="width:50px;">
           </a>
           <a class="mt-4 h4" style="cursor:pointer" (click)="logout()">Logout</a>
@@ -41,7 +41,7 @@
       <div class="form-group">
         <label for="newPassword"> New Password</label>
         <input type="password" formControlName="newPassword" class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f.newPassword.errors }" />
+          [ngClass]="{'is-invalid': submitted && f.newPassword.errors }" />
         <div *ngIf="submitted && f.newPassword.errors" class="invalid-feedback">
           <div *ngIf="f.newPassword.errors.required">Password is required</div>
           <div *ngIf="f.newPassword.errors.minlength">Password must be at least 6 characters</div>
@@ -74,7 +74,7 @@
   <!-- Upload Picture Modal -->
   <jw-modal id="custom-modal-2">
     <h3>Upload your picture</h3>
-    
+
     <img [src]="url" height="200"> <br />
     <input type='file' (change)="onSelectFile($event)">
 
