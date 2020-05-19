@@ -32,6 +32,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return getUsers();
                 case url.match(/\/users\/\d+$/) && method === 'DELETE':
                     return deleteUser();
+                case url.endsWith('/users/search') && method === 'POST':
+                    return searchUser(); 
                 default:
                     // pass through any requests not handled above
                     return next.handle(request);
@@ -131,6 +133,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             localStorage.setItem('users', JSON.stringify(users));
 
             return ok();
+        }
+
+        function searchUser() {
+            const searchString = body;
+            const results = users.find(user => user.firstname ===searchString);
+            return ok(results);
         }
     }
 }

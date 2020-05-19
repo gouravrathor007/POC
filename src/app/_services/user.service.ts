@@ -26,4 +26,8 @@ export class UserService {
     update(updatedFields, id) {
         return this.http.post(`${environment.apiUrl}/users/update`, {updatedFields, id})
     }
+
+    search(searchString){
+        return this.http.post(`${environment.apiUrl}/users/search`, {searchString})
+    }
 }
