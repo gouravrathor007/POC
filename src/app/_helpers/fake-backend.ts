@@ -136,8 +136,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function searchUser() {
-            const searchString = body;
-            const results = users.find(user => user.firstname ===searchString);
+            const { searchString } = body;
+            const results = users.filter(user => 
+                user.firstName.toLowerCase().includes(searchString.toLowerCase())
+            );
             return ok(results);
         }
     }

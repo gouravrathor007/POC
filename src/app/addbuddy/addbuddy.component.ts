@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { UserService } from '../_services';
-import { map } from 'rxjs/operators';
+import { switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-addbuddy',
@@ -23,15 +23,13 @@ export class AddbuddyComponent implements OnInit {
 
   ngOnInit() {
 
-    const searchField = new FormControl();
-    searchField.valueChanges
+    this.addBuddyForm.controls.searchField.valueChanges
     .pipe( 
-      /* debounceTime(200),
-      distinctUntilChanged(), */
-      map((query) =>  this.userService.search(query))
+      debounceTime(200),
+      distinctUntilChanged(),
+      switchMap((query) =>  this.userService.search(query))
     )
-
-    .subscribe(results => this.users = results) 
+    .subscribe(results => this.users = results);
   }
 
 }

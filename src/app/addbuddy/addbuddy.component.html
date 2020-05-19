@@ -2,14 +2,20 @@
   <a routerLink="/" role="button" aria-pressed="true">Back</a>
 </div>
 <div>
-
+<form [formGroup]="addBuddyForm">
   <section class="filter-wrapper">
     <div class="keyword-wrapper">
-      <input [formControl]="searchField" type="text" id="keyword" placeholder="search for employees..." autofocus />
+      <input formControlName="searchField" type="text" id="keyword" placeholder="search for employees..." autofocus />
     </div>
     <ul class="filter-select">
-      <li *ngFor="let user of users" class="filter-select-list tags">
-        <p class="user-name">{{user.firstName + user.lastName}}</p>
+      <!-- <li *ngFor="let user of users" class="filter-select-list">
+            <p class="user-name">{{user.firstName + '' + user.lastName}}</p>
+          </li> -->
+      <li *ngFor="let user of users" class="filter-select-list">
+        <p class="user-name">
+          {{user.firstName}}</p>
+        <span class="tags">{{user.lastName}}</span>
       </li>
     </ul>
   </section>
+</form>
