@@ -32,7 +32,7 @@
         <jw-modal id="custom-modal-3">
             <h3>Edit Employee</h3>
             <app-register [isEditForm]="true" [formFields]="currentUserFields" (updatedFields)="onUpdate($event)"></app-register>
-            <div class="text-right">
+            <div class="float-right pop">
                 <button (click)="closeModal('custom-modal-3');" class="btn btn-primary">Close</button>
             </div>
         </jw-modal>

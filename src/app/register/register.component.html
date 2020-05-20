@@ -15,18 +15,20 @@
             <div class="form-row">
                 <div class="form-group col-md-6 mb-3">
                     <label for="firstName">First Name</label>
-                    <input type="text" formControlName="firstName" class="form-control"
+                    <input type="text" pattern="^[A-Za-z]$" formControlName="firstName" maxlength="7" class="form-control"
                         [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
                     <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
                         <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                        <div *ngIf="f.firstName.errors.pattern">First Name is not valid.</div> 
                     </div>
                 </div>
                 <div class="form-group col-md-6 mb-3">
                     <label for="lastName">Last Name</label>
-                    <input type="text" formControlName="lastName" class="form-control"
+                    <input type="text" pattern="^[A-Za-z]$" formControlName="lastName" maxlength="7" class="form-control"
                         [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
                     <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
                         <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                        <div *ngIf="f.lastName.errors.pattern">Last Name is not valid.</div> 
                     </div>
                 </div>
             </div>
@@ -62,18 +64,18 @@
             </div>
             <div class="form-group ">
                 <label for="skills">Skills</label>
-                <textarea class="form-control" formControlName="skills" rows="1"
+                <textarea class="form-control" maxlength="16" formControlName="skills" rows="1"
                     [ngClass]="{ 'is-invalid': submitted && f.skills.errors }"></textarea>
-                <div *ngIf="submitted && f.skills.errors" class="invalid-feedback">
+                <div *ngIf="submitted && f.skills.errors"  class="invalid-feedback">
                     <div *ngIf="f.skills.errors.required">Skills are required</div>
                 </div>
             </div>
             <div class="form-row" *ngIf="!isEditForm">
-                <div class="form-group col-md-6 mb-3">
+                <div class="form-group col-md-6 mb-3 ">
                     <label for="username">Username</label>
-                    <input type="text" formControlName="username" class="form-control"
+                    <input type="text" maxlength="7"  formControlName="username" class="form-control"
                         [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="submitted && f.username.errors"  class="invalid-feedback">
                         <div *ngIf="f.username.errors.required">Username is required</div>
                     </div>
                 </div>
