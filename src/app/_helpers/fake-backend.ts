@@ -59,7 +59,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function register() {
             const user = body
 
-            if (users.find(x => x.username === user.username)) {
+            if (users.find(x => x.username.toLowerCase() === user.username.toLowerCase())) {
                 return error('Username "' + user.username + '" is already taken')
             }
 
