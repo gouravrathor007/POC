@@ -7,7 +7,7 @@
     <div class="keyword-wrapper">
       <input formControlName="searchField" type="text" id="keyword" placeholder="search for employees..." autofocus />
     </div>
-    <ul class="filter-select">
+    <ul class="filter-select" *ngIf="users" >
       <li *ngFor="let user of users" class="filter-select-list" (click)="onSelect(user)">
         <p class="user-name">
           {{user.firstName + ' ' + user.lastName}}</p>
