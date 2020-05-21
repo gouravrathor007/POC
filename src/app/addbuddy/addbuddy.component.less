@@ -33,9 +33,7 @@ body {
   outline: none;
   transition: border 0.5s ease-in-out
 }
-#keyword:focus {
-  border-color : rgba(81, 203, 238, 1);;
-}
+
 #keyword-button {
   position: absolute;
   right: 26%;
@@ -50,18 +48,17 @@ body {
 .filter-select {
   width: 50%;
   list-style: none;
-  font-size: 1.1em;
-  color: rgb(105, 105, 105);
+  font-size: 1.5em;
+  color: rgb(248, 234, 234);
   border: 1px solid #ccc;
-  border-top: none;
   /*so things don't jump around*/
   position: absolute;
   left: 25%;
-  top: calc(50% + 25px);
+  top: calc(50% + 35px);
   max-height: calc(50% - 15px);
   overflow-y: auto;
   background: #fff;
-  padding: 40px;
+  padding: 60px;
 }
 .filter-select-list img {
   margin-right: 30px;
@@ -79,7 +76,10 @@ body {
 }
 .filter-select-list {
   cursor: pointer;
-  padding: 5px 10px;
+  padding: 10px 10px;
+  color: blue;
+  top:-3px;
+  height: 60px;
 }
 .user-name {
   display: inline-block;

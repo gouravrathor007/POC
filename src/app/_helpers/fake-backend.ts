@@ -27,7 +27,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 case url.endsWith('/users/changePassword') && method === 'POST':
                     return changePassword();
                 case url.endsWith('/users/update') && method === 'POST':
-                    return updateUser();    
+                    return updateUser();   
+                case url.endsWith('/users/updateBuddy') && method === 'POST':
+                    return updateAddBuddy();  
                 case url.endsWith('/users') && method === 'GET':
                     return getUsers();
                 case url.match(/\/users\/\d+$/) && method === 'DELETE':
@@ -135,10 +137,25 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             return ok();
         }
 
+        function updateAddBuddy() {
+            const { buddyName, id} = body;
+
+            const curUser = users.find(user => user.id.toString() === id);
+            curUser.buddyName = buddyName;
+            
+            users = users.filter(x => x.id.toString() !== id);
+            users.push(curUser);
+            localStorage.setItem('users', JSON.stringify(users));
+
+            return ok();
+        }
+
         function searchUser() {
-            const { searchString } = body;
+            const { searchString, id } = body;
             const results = users.filter(user => 
-                user.firstName.toLowerCase().includes(searchString.toLowerCase())
+                user.firstName.toLowerCase().includes(searchString.toLowerCase()) && 
+                user.id.toString() !== id &&
+                user.userType !== 'adminUserType'
             );
             return ok(results);
         }

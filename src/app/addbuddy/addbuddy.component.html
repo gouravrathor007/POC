@@ -8,13 +8,9 @@
       <input formControlName="searchField" type="text" id="keyword" placeholder="search for employees..." autofocus />
     </div>
     <ul class="filter-select">
-      <!-- <li *ngFor="let user of users" class="filter-select-list">
-            <p class="user-name">{{user.firstName + '' + user.lastName}}</p>
-          </li> -->
-      <li *ngFor="let user of users" class="filter-select-list">
+      <li *ngFor="let user of users" class="filter-select-list" (click)="onSelect(user)">
         <p class="user-name">
-          {{user.firstName}}</p>
-        <span class="tags">{{user.lastName}}</span>
+          {{user.firstName + ' ' + user.lastName}}</p>
       </li>
     </ul>
   </section>

@@ -22,7 +22,8 @@
                     <td>{{user.grade}}</td>
                     <td>{{user.skills}}</td>
                     <td><a (click)="populateFields(user)" style="cursor:pointer" class="text-success"><strong>Edit</strong></a></td>
-                    <td><a class="text-primary" routerLink="./addbuddy"><strong>Add Buddy</strong></a></td>
+                    <td *ngIf="user.buddyName">{{user.buddyName}}</td>
+                    <td *ngIf="!user.buddyName"><a class="text-primary" [routerLink]="['/addbuddy', user.id]"><strong>Add Buddy</strong></a></td>
                     <td><a (click)="deleteUser(user.id)" style="cursor:pointer" class="text-danger"><strong>Delete</strong></a></td>
                 </tr>
             </tbody>

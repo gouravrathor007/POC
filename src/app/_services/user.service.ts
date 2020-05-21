@@ -27,7 +27,11 @@ export class UserService {
         return this.http.post(`${environment.apiUrl}/users/update`, {updatedFields, id})
     }
 
-    search(searchString){
-        return this.http.post(`${environment.apiUrl}/users/search`, {searchString})
+    updateBuddyName(buddyName, id) {
+        return this.http.post(`${environment.apiUrl}/users/updateBuddy`, {buddyName, id})
+    }
+
+    search(searchString, id){
+        return this.http.post(`${environment.apiUrl}/users/search`, {searchString, id})
     }
 }
