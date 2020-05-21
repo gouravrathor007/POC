@@ -48,7 +48,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             const { username, password } = body;
             const user = users.find(x => x.username === username && x.password === password);
             if (!user) return error('Username or password is incorrect');
-            if (user.userType !== 'adminUserType') return error('Only admin can login!');
+            if (user.userType !== 'admin') return error('Only admin can login!');
             return ok({
                 id: user.id,
                 username: user.username,
@@ -59,6 +59,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function register() {
+            debugger;
             const user = body
 
             if (users.find(x => x.username.toLowerCase() === user.username.toLowerCase())) {
@@ -155,7 +156,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             const results = users.filter(user => 
                 user.firstName.toLowerCase().includes(searchString.toLowerCase()) && 
                 user.id.toString() !== id &&
-                user.userType !== 'adminUserType'
+                user.userType !== 'admin'
             );
             return ok(results);
         }

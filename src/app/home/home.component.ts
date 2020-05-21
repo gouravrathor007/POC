@@ -102,7 +102,7 @@ export class HomeComponent implements OnInit, OnChanges {
         this.userService.getAll()
             .pipe(
                 first(),
-                map(users => users.filter(user => user.userType !== 'adminUserType')))
+                map(users => users.filter(user => user.userType !== 'admin')))
             .subscribe(users => this.users = users);
     }
 }
