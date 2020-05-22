@@ -41,7 +41,8 @@ export class RegisterComponent implements OnInit, OnChanges {
             grade: ['', Validators.required],
             skills: ['', Validators.required],
             username: ['', Validators.required],
-            password: ['', [Validators.required, Validators.minLength(6)]]
+            password: ['', [Validators.required, Validators.minLength(6)]],
+            confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
         });
     }
 
@@ -65,6 +66,13 @@ export class RegisterComponent implements OnInit, OnChanges {
     get f() { return this.registerForm.controls; }
 
     /**
+   * @description Method to check whether passwords match
+   */
+  public arePasswordsMatching(): boolean {
+    return (this.registerForm.get('password').value === this.registerForm.get('confirmPassword').value);
+  }
+
+    /**
      * @description Method to be called for submit user registration details
      */
     public onSubmit() {
@@ -73,10 +81,16 @@ export class RegisterComponent implements OnInit, OnChanges {
         // reset alerts on submit
         this.alertService.clear();
 
+        if (this.registerForm.invalid ||
+            this.registerForm.get('password').value !== this.registerForm.get('confirmPassword').value) {
+            return;
+          }
+
         // stop here if form is invalid
         if (this.registerForm.invalid) {
             return;
         }
+
 
         this.loading = true;
         this.userService.register(this.registerForm.value)
