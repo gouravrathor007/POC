@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit, OnChanges {
         this.loading = false;
         this.submitted = false;
         this.registerForm = this.formBuilder.group({
-            userType: ['', Validators.required],
+            userType: ['admin', Validators.required],
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
             location: ['', Validators.required],
@@ -83,7 +83,6 @@ export class RegisterComponent implements OnInit, OnChanges {
             .pipe(first())
             .subscribe(
                 data => {
-                    debugger;
                     this.alertService.success('Registration successful', true);
                     this.router.navigate(['/login'], { queryParams: { registered: true } });
                 },

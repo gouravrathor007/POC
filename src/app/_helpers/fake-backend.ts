@@ -29,7 +29,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 case url.endsWith('/users/update') && method === 'POST':
                     return updateUser();   
                 case url.endsWith('/users/updateBuddy') && method === 'POST':
-                    return updateAddBuddy();  
+                    return updateBuddyName();
+                case url.endsWith('/users/updatePicture') && method === 'POST':
+                    return updatePicture();   
                 case url.endsWith('/users') && method === 'GET':
                     return getUsers();
                 case url.match(/\/users\/\d+$/) && method === 'DELETE':
@@ -54,12 +56,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 username: user.username,
                 firstName: user.firstName,
                 lastName: user.lastName,
-                token: 'fake-jwt-token'
+                token: 'fake-jwt-token',
+                pictureUrl: user.pictureUrl
             })
         }
 
         function register() {
-            debugger;
             const user = body
 
             if (users.find(x => x.username.toLowerCase() === user.username.toLowerCase())) {
@@ -138,7 +140,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             return ok();
         }
 
-        function updateAddBuddy() {
+        function updateBuddyName() {
             const { buddyName, id} = body;
 
             const curUser = users.find(user => user.id.toString() === id);
@@ -159,6 +161,23 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 user.userType !== 'admin'
             );
             return ok(results);
+        }
+
+        function updatePicture() {
+            const { url, id} = body;
+
+            const curUser = users.find(user => user.id === id);
+            curUser.pictureUrl = url;
+
+            users = users.filter(x => x.id !== id);
+            users.push(curUser);
+            localStorage.setItem('users', JSON.stringify(users));
+
+            let currentUser = JSON.parse(localStorage.getItem('currentUser')) || {};
+            currentUser.pictureUrl = url;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+            return ok(currentUser);
         }
     }
 }

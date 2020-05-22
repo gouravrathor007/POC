@@ -13,8 +13,13 @@
       </div>
       <div class="col-md-2 float-right" *ngIf="currentUser">
         <div class="row">
-          <a class="col-md-3 mt-3" style="cursor:pointer" (click)="opendModal('custom-modal-2')">
+          <a class="col-md-3 mt-3" style="cursor:pointer" *ngIf="!currentUser.pictureUrl"
+            (click)="opendModal('custom-modal-2')">
             <img src="\assets\profile.png" alt="logo" style="width:40px; height:40px;">
+          </a>
+          <a class="col-md-3 mt-3" style="cursor:pointer" *ngIf="currentUser.pictureUrl"
+            (click)="opendModal('custom-modal-2')">
+            <img [src]="currentUser.pictureUrl" alt="picture" style="width:50px; height:50px;">
           </a>
           <a class="col-md-4 mt-2" style="cursor:pointer" (click)="opendModal('custom-modal-1')">
             <img src="\assets\settings.png" alt="logo" style="width:50px;">
@@ -75,8 +80,11 @@
   <jw-modal id="custom-modal-2">
     <h3>Upload your picture</h3>
 
-    <img [src]="url" height="200"> <br />
+    <img [src]="url" height="200" *ngIf="url"> <br />
     <input type='file' (change)="onSelectFile($event)">
+    <button *ngIf="url" class="btn btn-primary" (click)="onUpload()">
+      Upload
+    </button>
 
     <div class="text-right">
       <button (click)="closeModal('custom-modal-2');" class="btn btn-primary">Close</button>

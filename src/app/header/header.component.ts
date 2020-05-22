@@ -14,7 +14,6 @@ import { FileReaderEvent } from './../app.interface';
 export class HeaderComponent {
 
   public currentUser: any;
-  public bodyText: string;
   public changePasswordForm: FormGroup;
   public submitted: boolean;
   public loading: boolean;
@@ -37,7 +36,6 @@ export class HeaderComponent {
    * @description method to be call when user update the text in popup
    */
   public ngOnInit() {
-    this.bodyText = 'This text can be updated in modal 1';
     this.changePasswordForm = this.formBuilder.group({
       currentPassword: ['', [Validators.required, Validators.minLength(6)]],
       newPassword: ['', [Validators.required, Validators.minLength(6)]],
@@ -53,6 +51,7 @@ export class HeaderComponent {
    * @returns void
    */
   public logout(): void {
+    this.alertService.clear();
     this.authenticationService.logout();
     this.router.navigate(['/login']);
   }
@@ -126,5 +125,20 @@ export class HeaderComponent {
         this.url = (event.target as FileReader).result;
       }
     }
+  }
+
+  public onUpload(): void {
+    this.userService.updatePicture(this.url, this.currentUser.id)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.authenticationService.setCurrentUser(data);
+          this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+          this.alertService.success('Upload Successful!', true);
+          this.closeModal('custom-modal-2');
+        },
+        error => {
+          this.alertService.error(error);
+        });
   }
 }
