@@ -7,7 +7,7 @@ import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 let users = JSON.parse(localStorage.getItem('users')) || [];
 
 @Injectable()
-export class FakeBackendInterceptor implements HttpInterceptor {
+export class LocalStorageInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const { url, method, headers, body } = request;
 
@@ -182,9 +182,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     }
 }
 
-export const fakeBackendProvider = {
-    // use fake backend in place of Http service for backend-less development
+export const localStorageProvider = {
+    // use local storage  in place of Http service for backend-less development
     provide: HTTP_INTERCEPTORS,
-    useClass: FakeBackendInterceptor,
+    useClass: LocalStorageInterceptor,
     multi: true
 };

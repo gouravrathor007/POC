@@ -15,7 +15,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6 mb-3">
                     <label for="firstName">First Name</label>
-                    <input type="text" pattern="[a-zA-Z]+" formControlName="firstName" maxlength="15"
+                    <input type="text" pattern="[a-zA-Z]+" formControlName="firstName" maxlength="16"
                         class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
                     <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
                         <div *ngIf="f.firstName.errors.required">First Name is required</div>
@@ -24,7 +24,7 @@
                 </div>
                 <div class="form-group col-md-6 mb-3">
                     <label for="lastName">Last Name</label>
-                    <input type="text" pattern="[a-zA-Z]+" formControlName="lastName" maxlength="15"
+                    <input type="text" pattern="[a-zA-Z]+" formControlName="lastName" maxlength="16"
                         class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
                     <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
                         <div *ngIf="f.lastName.errors.required">Last Name is required</div>
@@ -71,9 +71,9 @@
                         <div *ngIf="f.skills.errors.required">Skills are required</div>
                     </div>
                 </div>
-                <div class="form-group col-md-6 mb-3 ">
+                <div class="form-group col-md-6 mb-3" *ngIf="!isEditForm">
                     <label for="username">Username</label>
-                    <input type="text" maxlength="15" formControlName="username" class="form-control"
+                    <input type="text" maxlength="16" formControlName="username" class="form-control"
                         [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
                     <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
                         <div *ngIf="f.username.errors.required">Username is required</div>
