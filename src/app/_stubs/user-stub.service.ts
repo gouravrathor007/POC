@@ -17,4 +17,24 @@ export class UserStubService {
     delete(id) {
         return of();
     }
+
+    changePassword(newPassword, id) {
+        return of();
+    }
+
+    update(updatedFields, id) {
+        return of();
+    }
+
+    updateBuddyName(buddyName, id) {
+        return of();    
+    }
+
+    search(searchString, id) {
+        return of();    
+    }
+
+    updatePicture(url, id) {
+        return of();    
+    }
 }

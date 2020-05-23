@@ -9,7 +9,7 @@ import { UserFields } from '../app.interface';
     selector: 'app-register',
     templateUrl: 'register.component.html' 
 })
-export class RegisterComponent implements OnInit, OnChanges {
+export class RegisterComponent implements OnChanges {
     @Input() isEditForm: boolean;
     @Input() formFields: UserFields;
     @Output() updatedFields: EventEmitter<UserFields>;
@@ -42,14 +42,8 @@ export class RegisterComponent implements OnInit, OnChanges {
             skills: ['', Validators.required],
             username: ['', Validators.required],
             password: ['', [Validators.required, Validators.minLength(6)]],
-            confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
+            confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
         });
-    }
-
-    /**
-     * @description Method to be called for user registration validations
-     */
-    public ngOnInit() {
     }
 
     public ngOnChanges(Changes: SimpleChanges) {
@@ -122,9 +116,13 @@ export class RegisterComponent implements OnInit, OnChanges {
         this.updatedFields.emit(object);
         this.loading = false;
     }
-    public onReset(userType: any){
+
+    /**
+     * @description Method to be called to rest the form
+     * @param userType 
+     */
+    public onReset(userType: any): void {
         this.registerForm.reset();
         this.registerForm.controls.userType.setValue(userType);
-
     }
 }
