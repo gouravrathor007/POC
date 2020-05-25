@@ -62,7 +62,7 @@ export class HeaderComponent {
    * @param id 
    * @returns void
    */
-  public opendModal(id: string): void {
+  public openModal(id: string): void {
     this.modalService.open(id);
   }
 

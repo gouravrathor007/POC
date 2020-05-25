@@ -19,6 +19,10 @@ export class AuthenticationStubService {
         return 'currentUser';
     }
 
+    public setCurrentUser(user) {
+        this.currentUserSubject.next(user);
+    }
+
     login(username, password) {
         return null;
     }
