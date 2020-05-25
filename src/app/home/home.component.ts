@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit, OnChanges {
      * @param id 
      * @returns void
      */
-    public opendModal(id: string): void {
+    public openModal(id: string): void {
         this.modalService.open(id);
     }
 
@@ -74,8 +74,8 @@ export class HomeComponent implements OnInit, OnChanges {
             grade: user.grade,
             skills: user.skills
         };
-        this.editedUserId = user.id;
-        this.opendModal('custom-modal-3');
+        this.editedUserId = user.id.toString();
+        this.openModal('custom-modal-3');
     }
 
     /**
