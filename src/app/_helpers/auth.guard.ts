@@ -11,7 +11,7 @@ export class AuthGuard implements CanActivate {
     ) {}
     
     /**
-     * @description Authentication for home page login
+     * @description Method to login for authorised users
      * @param route 
      * @param state 
      */
