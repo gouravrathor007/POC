@@ -126,7 +126,7 @@ export class LocalStorageInterceptor implements HttpInterceptor {
         function updateUser() {
             const { updatedFields, id} = body;
 
-            const curUser = users.find(user => user.id === id);
+            const curUser = users.find(user => user.id.toString() === id);
             curUser.firstName = updatedFields.firstName;
             curUser.lastName = updatedFields.lastName;
             curUser.location = updatedFields.location;

@@ -106,6 +106,14 @@ export class RegisterComponent implements OnChanges {
      */
     public onUpdate(): void {
         this.loading = true;
+        if (this.registerForm.get('firstName').invalid ||
+            this.registerForm.get('lastName').invalid ||
+            this.registerForm.get('location').invalid ||
+            this.registerForm.get('grade').invalid ||
+            this.registerForm.get('skills').invalid){
+            this.loading = false;
+            return;
+        }
         const object = {
             firstName: this.registerForm.get('firstName').value,
             lastName: this.registerForm.get('lastName').value,
