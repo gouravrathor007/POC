@@ -69,7 +69,7 @@ export class HeaderComponent {
   /**
    * @description Method to be called when user close the popup window close
    * @param id 
-   * @return void
+   * @returns void
    */
   public closeModal(id: string): void {
     this.modalService.close(id);
@@ -84,6 +84,7 @@ export class HeaderComponent {
 
   /**
    * @description Method to be called on submit of Change Password Button
+   * @returns void
    */
   public onSubmit(): void {
     this.submitted = true;
@@ -111,6 +112,7 @@ export class HeaderComponent {
         });
 
   }
+
   /**
    * @description Method called for upload Image
    * @param event 
@@ -127,6 +129,10 @@ export class HeaderComponent {
     }
   }
 
+  /**
+   * @description Method called for upload profile picture
+   * @returns void
+   */
   public onUpload(): void {
     this.userService.updatePicture(this.url, this.currentUser.id)
       .pipe(first())

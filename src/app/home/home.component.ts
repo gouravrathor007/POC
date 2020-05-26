@@ -65,6 +65,7 @@ export class HomeComponent implements OnInit, OnChanges {
 
     /**
      * @description Method to be called to populate fields of employee in the form
+     * @returns void
      */
     public populateFields(user: any): void {
         this.currentUserFields = {
@@ -80,6 +81,7 @@ export class HomeComponent implements OnInit, OnChanges {
 
     /**
      * @description Method to be called to upadte employee data
+     * @returns void
      */
     public onUpdate(event: any): void {
         this.userService.update(event, this.editedUserId)
